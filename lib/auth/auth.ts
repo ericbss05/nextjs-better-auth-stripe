@@ -6,14 +6,15 @@ import { Resend } from 'resend';
 import ForgotPasswordEmail from '@/components/emails/reset-password';
 import VerifyEmail from '@/components/emails/verify-email';
 import prisma from '@/lib/prisma';
+import { env } from "@/env.mjs";
 
-const resend = new Resend(process.env.RESEND_API_KEY as string);
+const resend = new Resend(env.RESEND_API_KEY as string);
 
 export const auth = betterAuth({
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       await resend.emails.send({
-        from: `${process.env.EMAIL_SENDER_NAME} <${process.env.EMAIL_SENDER_ADDRESS}>`,
+        from: `${env.EMAIL_SENDER_NAME} <${env.EMAIL_SENDER_ADDRESS}>`,
         to: user.email,
         subject: 'Verify your email',
         react: VerifyEmail({ username: user.name, verifyUrl: url })
@@ -26,7 +27,7 @@ export const auth = betterAuth({
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
       await resend.emails.send({
-        from: `${process.env.EMAIL_SENDER_NAME} <${process.env.EMAIL_SENDER_ADDRESS}>`,
+        from: `${env.EMAIL_SENDER_NAME} <${env.EMAIL_SENDER_ADDRESS}>`,
         to: user.email,
         subject: 'Reset your password',
         react: ForgotPasswordEmail({
@@ -40,13 +41,26 @@ export const auth = betterAuth({
   },
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+      clientId: env.GOOGLE_CLIENT_ID as string,
+      clientSecret: env.GOOGLE_CLIENT_SECRET as string
     }
   },
   database: prismaAdapter(prisma, {
     provider: 'postgresql'
   }),
+  rateLimit: {
+    enabled: true,
+    storage: "memory",
+    // Limite par défaut pour les autres routes de l'API auth.
+    window: 60,
+    max: 20,
+    customRules: {
+      // Endpoints les plus exposés au brute-force : limites plus strictes.
+      "/sign-in/email": { window: 60, max: 5 },
+      "/sign-up/email": { window: 60, max: 5 },
+      "/forget-password": { window: 60, max: 3 },
+      "/reset-password": { window: 60, max: 5 },
+    },
+  },
   plugins: [admin(), nextCookies()]
 });
-

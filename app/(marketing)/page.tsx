@@ -4,25 +4,6 @@ import { Button } from '@/components/ui/button';
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
-      {/* Navbar */}
-      <header className="border-b">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
-            YourApp
-          </Link>
-
-          <nav className="flex items-center gap-3">
-            <Button variant="ghost" >
-              <Link href="/login">Log in</Link>
-            </Button>
-
-            <Button >
-              <Link href="/signup">Get started</Link>
-            </Button>
-          </nav>
-        </div>
-      </header>
-
       {/* Hero */}
       <section className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-6">
         <div className="mx-auto max-w-3xl text-center">

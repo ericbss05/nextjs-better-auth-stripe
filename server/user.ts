@@ -1,14 +1,15 @@
 'use server';
 
-import { auth } from '@/lib/auth';
+import { auth } from '@/lib/auth/auth';
 import { headers } from 'next/headers';
+import { env } from "@/env.mjs";
 
 export async function forgotPassword(data: { email: string }) {
   try {
     const result = await auth.api.requestPasswordReset({
       body: {
         email: data.email,
-        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password`
+        redirectTo: `${env.BASE_URL}/reset-password`
       }
     });
     return { success: true, data: result };

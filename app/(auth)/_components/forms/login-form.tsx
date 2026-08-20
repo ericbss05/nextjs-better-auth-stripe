@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { Spinner } from '@/components/ui/spinner';
-import { authClient } from '@/lib/auth-client';
+import { authClient } from '@/lib/auth/auth-client';
 import {
   Field,
   FieldError,
@@ -87,7 +87,7 @@ export function LoginForm({
         if (error?.code === 'EMAIL_NOT_VERIFIED') {
           setUnverifiedEmail(email);
           setError(
-            'Your email address has not been verified yet.'
+            'Your email has not been verified yet. Your verification link may have expired. Please verify your email again.'
           );
         } else {
           // Same message whether the email doesn't exist
@@ -302,18 +302,6 @@ export function LoginForm({
           Sign in with Google
         </Button>
       </div>
-
-      {/* Sign Up */}
-      <p className='text-muted-foreground px-8 text-center text-sm'>
-        Don&apos;t have an account?{' '}
-
-        <Link
-          href='/signup'
-          className='text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline'
-        >
-          Sign up
-        </Link>
-      </p>
     </div>
   );
 }

@@ -47,7 +47,7 @@ const data = {
     },
     {
       title: 'Billing',
-      url: '/billing',
+      url: '/dashboard/billing',
       icon: <CreditCardIcon />,
     },
     {

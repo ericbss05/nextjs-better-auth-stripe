@@ -14,10 +14,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input';
 import { useState } from 'react';
-import { authClient } from '@/lib/auth-client';
+import { authClient } from '@/lib/auth/auth-client';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { Spinner } from '@/components/ui/spinner';
 import { Alert } from '@/components/ui/alert';
 import { AlertTriangleIcon } from 'lucide-react';
@@ -79,7 +78,7 @@ export function SignupForm({
         name: `${values.name} ${values.lastName}`,
         email: values.email,
         password: values.password,
-        callbackURL: '/verify-email'
+        callbackURL: '/login'
       });
 
       if (error) {
@@ -100,6 +99,21 @@ export function SignupForm({
       setIsLoading(false);
     }
   }
+
+  async function signUpWithGoogle() {
+  setError(null);
+  setIsLoading(true);
+
+  const { error } = await authClient.signIn.social({
+    provider: 'google',
+    callbackURL: '/dashboard'
+  });
+
+  if (error) {
+    setError(error.message ?? 'Unable to continue with Google.');
+    setIsLoading(false);
+  }
+}
 
   return (
     <div
@@ -244,39 +258,29 @@ export function SignupForm({
             <Button type='submit' disabled={isSubmitting} className='w-full'>
               {isSubmitting ? <Spinner /> : 'Create Account'}
             </Button>
+            <Button
+          type='button'
+          variant='outline'
+          onClick={signUpWithGoogle}
+          className='w-full'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            aria-hidden='true'
+            className='size-4'
+            viewBox='0 0 488 512'
+          >
+            <path
+              fill='currentColor'
+              d='M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.5 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4'
+            />
+          </svg>
+
+          Sign in with Google
+        </Button>
           </FieldGroup>
         </form>
       </div>
-
-      {/* Footer Sign In */}
-      <p className='text-muted-foreground px-8 text-center text-sm'>
-        Already have an account?{' '}
-        <Link
-          href='/login'
-          className='text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline'
-        >
-          Sign in
-        </Link>
-      </p>
-
-      {/* Terms */}
-      <p className='text-muted-foreground px-8 text-center text-xs'>
-        By clicking continue, you agree to our{' '}
-        <Link
-          href='#'
-          className='hover:text-primary underline underline-offset-4'
-        >
-          Terms of Service
-        </Link>{' '}
-        and{' '}
-        <Link
-          href='#'
-          className='hover:text-primary underline underline-offset-4'
-        >
-          Privacy Policy
-        </Link>
-        .
-      </p>
     </div>
   );
 }

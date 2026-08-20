@@ -19,7 +19,7 @@ import {
   FieldLabel
 } from '@/components/ui/field';
 
-import { authClient } from '@/lib/auth-client';
+import { authClient } from '@/lib/auth/auth-client';
 
 const verifyEmailSchema = z.object({
   email: z

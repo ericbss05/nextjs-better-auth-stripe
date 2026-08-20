@@ -28,7 +28,6 @@ export type SessionMinAggregateOutputType = {
   id: string | null
   expiresAt: Date | null
   token: string | null
-  impersonatedBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
   ipAddress: string | null
@@ -40,7 +39,6 @@ export type SessionMaxAggregateOutputType = {
   id: string | null
   expiresAt: Date | null
   token: string | null
-  impersonatedBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
   ipAddress: string | null
@@ -52,7 +50,6 @@ export type SessionCountAggregateOutputType = {
   id: number
   expiresAt: number
   token: number
-  impersonatedBy: number
   createdAt: number
   updatedAt: number
   ipAddress: number
@@ -66,7 +63,6 @@ export type SessionMinAggregateInputType = {
   id?: true
   expiresAt?: true
   token?: true
-  impersonatedBy?: true
   createdAt?: true
   updatedAt?: true
   ipAddress?: true
@@ -78,7 +74,6 @@ export type SessionMaxAggregateInputType = {
   id?: true
   expiresAt?: true
   token?: true
-  impersonatedBy?: true
   createdAt?: true
   updatedAt?: true
   ipAddress?: true
@@ -90,7 +85,6 @@ export type SessionCountAggregateInputType = {
   id?: true
   expiresAt?: true
   token?: true
-  impersonatedBy?: true
   createdAt?: true
   updatedAt?: true
   ipAddress?: true
@@ -175,7 +169,6 @@ export type SessionGroupByOutputType = {
   id: string
   expiresAt: Date
   token: string
-  impersonatedBy: string | null
   createdAt: Date
   updatedAt: Date
   ipAddress: string | null
@@ -208,7 +201,6 @@ export type SessionWhereInput = {
   id?: Prisma.StringFilter<"Session"> | string
   expiresAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   token?: Prisma.StringFilter<"Session"> | string
-  impersonatedBy?: Prisma.StringNullableFilter<"Session"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   ipAddress?: Prisma.StringNullableFilter<"Session"> | string | null
@@ -221,7 +213,6 @@ export type SessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   token?: Prisma.SortOrder
-  impersonatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -237,7 +228,6 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SessionWhereInput[]
   NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[]
   expiresAt?: Prisma.DateTimeFilter<"Session"> | Date | string
-  impersonatedBy?: Prisma.StringNullableFilter<"Session"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   ipAddress?: Prisma.StringNullableFilter<"Session"> | string | null
@@ -250,7 +240,6 @@ export type SessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   token?: Prisma.SortOrder
-  impersonatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -268,7 +257,6 @@ export type SessionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Session"> | string
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
   token?: Prisma.StringWithAggregatesFilter<"Session"> | string
-  impersonatedBy?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
   ipAddress?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
@@ -277,10 +265,9 @@ export type SessionScalarWhereWithAggregatesInput = {
 }
 
 export type SessionCreateInput = {
-  id?: string
+  id: string
   expiresAt: Date | string
   token: string
-  impersonatedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ipAddress?: string | null
@@ -289,10 +276,9 @@ export type SessionCreateInput = {
 }
 
 export type SessionUncheckedCreateInput = {
-  id?: string
+  id: string
   expiresAt: Date | string
   token: string
-  impersonatedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ipAddress?: string | null
@@ -304,7 +290,6 @@ export type SessionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -316,7 +301,6 @@ export type SessionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -325,10 +309,9 @@ export type SessionUncheckedUpdateInput = {
 }
 
 export type SessionCreateManyInput = {
-  id?: string
+  id: string
   expiresAt: Date | string
   token: string
-  impersonatedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ipAddress?: string | null
@@ -340,7 +323,6 @@ export type SessionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -351,7 +333,6 @@ export type SessionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -373,7 +354,6 @@ export type SessionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   token?: Prisma.SortOrder
-  impersonatedBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrder
@@ -385,7 +365,6 @@ export type SessionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   token?: Prisma.SortOrder
-  impersonatedBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrder
@@ -397,7 +376,6 @@ export type SessionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
   token?: Prisma.SortOrder
-  impersonatedBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrder
@@ -448,10 +426,9 @@ export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type SessionCreateWithoutUserInput = {
-  id?: string
+  id: string
   expiresAt: Date | string
   token: string
-  impersonatedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ipAddress?: string | null
@@ -459,10 +436,9 @@ export type SessionCreateWithoutUserInput = {
 }
 
 export type SessionUncheckedCreateWithoutUserInput = {
-  id?: string
+  id: string
   expiresAt: Date | string
   token: string
-  impersonatedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ipAddress?: string | null
@@ -502,7 +478,6 @@ export type SessionScalarWhereInput = {
   id?: Prisma.StringFilter<"Session"> | string
   expiresAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   token?: Prisma.StringFilter<"Session"> | string
-  impersonatedBy?: Prisma.StringNullableFilter<"Session"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Session"> | Date | string
   ipAddress?: Prisma.StringNullableFilter<"Session"> | string | null
@@ -511,10 +486,9 @@ export type SessionScalarWhereInput = {
 }
 
 export type SessionCreateManyUserInput = {
-  id?: string
+  id: string
   expiresAt: Date | string
   token: string
-  impersonatedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   ipAddress?: string | null
@@ -525,7 +499,6 @@ export type SessionUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -536,7 +509,6 @@ export type SessionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -547,7 +519,6 @@ export type SessionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
-  impersonatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -560,7 +531,6 @@ export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   expiresAt?: boolean
   token?: boolean
-  impersonatedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   ipAddress?: boolean
@@ -573,7 +543,6 @@ export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   expiresAt?: boolean
   token?: boolean
-  impersonatedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   ipAddress?: boolean
@@ -586,7 +555,6 @@ export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   expiresAt?: boolean
   token?: boolean
-  impersonatedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   ipAddress?: boolean
@@ -599,7 +567,6 @@ export type SessionSelectScalar = {
   id?: boolean
   expiresAt?: boolean
   token?: boolean
-  impersonatedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   ipAddress?: boolean
@@ -607,7 +574,7 @@ export type SessionSelectScalar = {
   userId?: boolean
 }
 
-export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "expiresAt" | "token" | "impersonatedBy" | "createdAt" | "updatedAt" | "ipAddress" | "userAgent" | "userId", ExtArgs["result"]["session"]>
+export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "expiresAt" | "token" | "createdAt" | "updatedAt" | "ipAddress" | "userAgent" | "userId", ExtArgs["result"]["session"]>
 export type SessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -627,7 +594,6 @@ export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     expiresAt: Date
     token: string
-    impersonatedBy: string | null
     createdAt: Date
     updatedAt: Date
     ipAddress: string | null
@@ -1060,7 +1026,6 @@ export interface SessionFieldRefs {
   readonly id: Prisma.FieldRef<"Session", 'String'>
   readonly expiresAt: Prisma.FieldRef<"Session", 'DateTime'>
   readonly token: Prisma.FieldRef<"Session", 'String'>
-  readonly impersonatedBy: Prisma.FieldRef<"Session", 'String'>
   readonly createdAt: Prisma.FieldRef<"Session", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Session", 'DateTime'>
   readonly ipAddress: Prisma.FieldRef<"Session", 'String'>
